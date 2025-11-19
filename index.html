@@ -1,53 +1,42 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quarterly Earnings — Interactive Reveal.js</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Quarterly Earnings — Reveal.js</title>
 
-  <!-- Reveal.js (from CDN) -->
+  <!-- Core styles -->
   <link rel="stylesheet" href="https://unpkg.com/reveal.js@4.5.0/dist/reveal.css">
   <link rel="stylesheet" href="https://unpkg.com/reveal.js@4.5.0/dist/theme/black.css" id="theme">
-
-  <!-- Highlight.js for code highlighting (Reveal's highlight plugin uses this) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/default.min.css">
 
   <style>
-    /* small visual polish */
-    .brand-email { font-size: 0.9rem; opacity: 0.85 }
-    .slide-hero { display:flex; flex-direction:column; gap:0.6rem }
+    .brand-email { font-size: .9rem; opacity: .85; }
   </style>
 </head>
 <body>
-
   <div class="reveal">
     <div class="slides">
-
-      <!-- Title slide -->
       <section>
         <h1>Quarterly Earnings Report</h1>
         <h3>Interactive presentation (Reveal.js)</h3>
         <p class="brand-email">Contact: 23f1000470@ds.study.iitm.ac.in</p>
-        <aside class="notes">Open by introducing the purpose: review KPIs, drivers, outlook. Mention stakeholders can view the live deck on GitHub Pages.</aside>
+        <aside class="notes">Intro: review KPIs, drivers, outlook.</aside>
       </section>
 
-      <!-- Markdown slide (uses Reveal's markdown plugin) -->
       <section data-markdown>
-      <textarea data-template>
+        <textarea data-template>
+## Executive Summary (Markdown)
 
-      ## Executive Summary (Markdown)
+- **Revenue:** Up 7% QoQ
+- **Net Income:** Up 12% QoQ
+- **Key drivers:** Cost optimization, higher trading volumes
 
-      - **Revenue:** Up 7% QoQ
-      - **Net Income:** Up 12% QoQ
-      - **Key drivers:** Cost optimization, higher trading volumes
-
-      > *Note:* Numbers are illustrative for demo purposes.
-
-      </textarea>
-      <aside class="notes">Speak to each bullet and add context about drivers and mitigations.</aside>
+> *Note:* Numbers are illustrative for demo purposes.
+        </textarea>
+        <aside class="notes">Speak to each bullet point.</aside>
       </section>
 
-      <!-- Animated fragments -->
       <section>
         <h2>Key Performance Indicators</h2>
         <ul>
@@ -55,10 +44,9 @@
           <li class="fragment">Operating Margin: 18%</li>
           <li class="fragment">EPS: $1.14</li>
         </ul>
-        <aside class="notes">Reveal fragments will reveal each KPI on click. Use this to pace the story.</aside>
+        <aside class="notes">Reveal fragments will reveal each KPI on click.</aside>
       </section>
 
-      <!-- Code sample with syntax highlighting -->
       <section>
         <h2>Data Pipeline (sample code)</h2>
         <pre><code class="language-python"># sample: compute rolling revenue growth
@@ -66,64 +54,50 @@ import pandas as pd
 
 df = pd.read_csv('quarterly.csv', parse_dates=['date'])
 df['revenue_growth'] = df['revenue'].pct_change()*100
-print(df.tail())
-</code></pre>
-        <aside class="notes">Walk through the code: loading, percent change, sanity checks.</aside>
+print(df.tail())</code></pre>
+        <aside class="notes">Walk through the code.</aside>
       </section>
 
-      <!-- Math equations (MathJax) -->
       <section>
         <h2>Financial Formulae</h2>
-        <p>Present Value of Free Cash Flow (DCF):</p>
-        <p class="fragment">\(\mathrm{PV} = \sum_{t=1}^{T} \dfrac{FCF_t}{(1+r)^t}\)</p>
-        <p class="fragment">Weighted Average Cost of Capital (WACC):</p>
-        <p class="fragment">\(\mathrm{WACC} = \dfrac{E}{E+D}r_e + \dfrac{D}{E+D}r_d(1-\tau)\)</p>
-        <aside class="notes">Explain discount rate choices and assumptions; mention sensitivity to r.</aside>
+        <p>Present Value (DCF):</p>
+        <p class="fragment">\( \mathrm{PV} = \sum_{t=1}^{T} \dfrac{FCF_t}{(1+r)^t} \)</p>
+        <p class="fragment">WACC:</p>
+        <p class="fragment">\( \mathrm{WACC} = \dfrac{E}{E+D}r_e + \dfrac{D}{E+D}r_d(1-\tau) \)</p>
+        <aside class="notes">Explain assumptions and sensitivity.</aside>
       </section>
 
-      <!-- Fragmented chart placeholder -->
-      <section>
-        <h2>Outlook & Scenarios</h2>
-        <p class="fragment">Base case: steady growth</p>
-        <p class="fragment">Upside: contract wins</p>
-        <p class="fragment">Downside: macro slowdown</p>
-        <aside class="notes">Use fragments to reveal each scenario. If you want, embed an SVG or interactive chart here later.</aside>
-      </section>
-
-      <!-- Closing slide with publishing info -->
       <section>
         <h2>Published on GitHub Pages</h2>
-        <p>The presentation is designed to be published to GitHub Pages. See repository instructions in the README.</p>
-        <p class="brand-email">Contact: 23f1000470@ds.study.iitm.ac.in</p>
-        <aside class="notes">Remind audience how to access the live URL and how to refresh the cache (?v=1, ?v=2).</aside>
+        <p>Contact: 23f1000470@ds.study.iitm.ac.in</p>
+        <aside class="notes">Remind audience how to access the live URL and cache-busting (?v=1).</aside>
       </section>
-
     </div>
   </div>
 
-  <!-- Reveal core + plugins -->
-  <script src="https://unpkg.com/reveal.js@4.5.0/dist/reveal.js"></script>
-  <script src="https://unpkg.com/reveal.js@4.5.0/plugin/markdown/markdown.esm.js" type="module"></script>
-  <script src="https://unpkg.com/reveal.js@4.5.0/plugin/highlight/highlight.esm.js" type="module"></script>
+  <!-- Use ES modules consistently (recommended pattern for Reveal 4) -->
+  <script type="module">
+    import Reveal from 'https://unpkg.com/reveal.js@4.5.0/dist/reveal.esm.js';
+    import Markdown from 'https://unpkg.com/reveal.js@4.5.0/plugin/markdown/markdown.esm.js';
+    import Highlight from 'https://unpkg.com/reveal.js@4.5.0/plugin/highlight/highlight.esm.js';
 
-  <!-- MathJax for equations -->
+    // Initialize reveal with plugins
+    Reveal.initialize({
+      hash: true,
+      center: true,
+      slideNumber: true,
+      transition: 'convex',
+      plugins: [ Markdown, Highlight ]
+    });
+  </script>
+
+  <!-- MathJax for mathematics (non-module, global) -->
   <script>
     window.MathJax = {
-      tex: {inlineMath: [['$','$'], ['\\(','\\)']]},
-      svg: {fontCache: 'global'}
+      tex: { inlineMath: [['$','$'], ['\\(','\\)']] },
+      svg: { fontCache: 'global' }
     };
   </script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
-
-  <script>
-    // Initialize Reveal
-    Reveal.initialize({
-      hash: true,
-      plugins: [ RevealMarkdown, RevealHighlight ],
-      slideNumber: true,
-      center: true,
-      transition: 'convex'
-    });
-  </script>
 </body>
 </html>
