@@ -7,57 +7,52 @@ paginate: true
 ---
 
 <!--
-  Custom theme for Marp.
-  This CSS block declares variables and styles used across slides.
-  Marp will pick it up as an embedded style theme.
+  Embedded custom theme for Marp slides.
+  Keep this near the top so Marp picks it up as a theme.
 -->
 <style>
-/* Theme variables */
-:root {
-  --color-bg: #ffffff;
-  --color-foreground: #102a43;
-  --color-accent: #0066ff;
-  --slide-padding: 40px;
+:root{
+  --bg: #ffffff;
+  --fg: #0b2545;
+  --accent: #0066ff;
+  --slide-padding: 48px;
 }
 
-/* Base slide styles */
 section {
-  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  color: var(--color-foreground);
+  background: var(--bg);
+  color: var(--fg);
   padding: var(--slide-padding);
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
 }
 
-/* Title sizes */
+/* Title sizing */
 h1 { font-size: 48px; margin-bottom: 8px; }
-h2 { font-size: 34px; margin-bottom: 8px; }
+h2 { font-size: 32px; margin-bottom: 6px; }
 
-/* Custom accent box for notes/announcements */
-.marp-accent {
-  border-radius: 10px;
+/* Accent box - for notes/announcements */
+.accent-box {
   padding: 18px;
-  background: linear-gradient(180deg, #f0f8ff 0%, #eef6ff 100%);
+  border-radius: 10px;
+  background: linear-gradient(180deg, #f6fbff 0%, #eef6ff 100%);
   border: 1px solid rgba(0,102,255,0.12);
 }
 
-/* Make code blocks wrap nicely on smaller screens */
+/* Make code blocks wrap on narrow screens */
 pre {
   white-space: pre-wrap;
   word-break: break-word;
 }
 
-/* Footer for validators / simple scrapers: use HTML entity for @ */
+/* Footer for validators / humans */
 .footer-email {
-  text-align: center;
-  font-size: 0.9rem;
-  opacity: 0.9;
-  margin-top: 18px;
+  text-align:center;
+  font-size:0.9rem;
+  opacity:0.9;
+  margin-top:18px;
 }
 
-/* Background-image helper class (when using inline background directives, keep this for fallback) */
-.bg-cover {
-  background-size: cover;
-  background-position: center;
-}
+/* Helper: ensure background images cover */
+.bg-cover { background-size: cover; background-position: center; }
 </style>
 
 <!-- Title slide -->
@@ -66,60 +61,57 @@ pre {
 
 ---
 
-<!-- Slide with background image (Marp directive) -->
+<!-- Slide with background image -->
 <!-- _backgroundImage: https://images.unsplash.com/photo-1526378722484-c1d4c85e3d6c?w=1600&q=80&auto=format&fit=crop -->
 <!-- _backgroundSize: cover -->
 # Project Overview
-
 This documentation provides end-to-end technical guidance for engineers and product teams.
 
 ---
 
 # Key Features
-
-- Version-controlled docs (Markdown in Git)
+- Version-controlled documentation (Markdown in Git)
 - Exportable to PDF, HTML and PPT
 - Developer-friendly formatting and automation
-- Easy to maintain via CI/CD
+- CI-driven rendering and publishing
 
 ---
 
-# Algorithmic Complexity
-
-We use formal notation for algorithmic complexity and proofs.
+# Algorithmic Complexity (Math)
+We often state complexity formally:
 
 $$
 T(n) = O(n \log n)
 $$
 
-Explain the dominant term and assumptions (average / worst-case).
+Explain assumptions and whether this is average or worst-case.
 
 ---
 
-# Example: Complexity Derivation
-
+# Complexity Derivation (Master Theorem)
 1. Partition cost: \(O(n)\)  
-2. Recursive halves: \(2T(n/2)\)  
-3. By Master theorem: \(T(n) = O(n \log n)\)
+2. Two recurrences: \(2T(n/2)\)  
+By the Master theorem:
+$$
+T(n) = O(n \log n)
+$$
 
 ---
 
-# Custom Styled Slide
-
-<div class="marp-accent">
+# Custom Styled Notes
+<div class="accent-box">
 **Release Notes (v1.3.0)**
 
 - New API endpoints for bulk export  
-- Improved caching layer (redis LRU policy)  
-- Authentication module: OAuth2 + refresh tokens  
+- Improved caching with LRU policy  
+- OAuth2 refresh tokens enabled
 </div>
 
 ---
 
-# Code Snippet (syntax highlighting)
-
+# Code Example
 ```javascript
-// Example: fetch docs index
+// Fetch docs index
 async function fetchIndex() {
   const res = await fetch('/api/docs/index.json');
   return res.json();
